@@ -1,0 +1,7 @@
+<h2>Course Details</h2>
+
+<div *ngIf="course">
+  <h3>{{ course.name }}</h3>
+  <h4>{{ course.startDate | date }}</h4>
+  <p>{{ course.description }}</p>
+</div>

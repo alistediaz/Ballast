@@ -1,0 +1,21 @@
+<h2>Courses</h2>
+
+<div *ngFor="let course of courses">
+  <h3>
+    <a  [title]="course.name + ' Register'"
+        [routerLink]="['/courses', course.id]">
+      {{ course.name }}
+    </a>
+  </h3>
+  <p *ngIf="course.description">
+    Description: {{ course.description }}
+  </p>
+  <button type="button" (click)="share()">
+    Share
+  </button>
+
+  <app-signup
+    [course]="course"
+    (register)="onRegister()">
+  </app-signup>
+</div>

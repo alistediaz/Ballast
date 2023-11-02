@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Curso 1",
+    "startDate": "Tue Oct 31 2023 17:58:35 GMT-0300",
+    "description": "A large phone with one of the best screens"
+  },
+  {
+    "id": 2,
+    "name": "Curso 2",
+    "startDate": "Tue Oct 31 2023 17:58:35 GMT-0300",
+    "description": "A great phone with one of the best cameras"
+  },
+  {
+    "id": 3,
+    "name": "Curso 3",
+    "startDate": "Tue Oct 31 2023 17:58:35 GMT-0300",
+    "description": ""
+  }
+]
