@@ -1,1 +1,13 @@
-<p>course-admin works!</p>
+<div *ngIf="tokenExists">
+<form (ngSubmit)="submitForm()">
+  <div>
+    <label for="courseName">Course Name:</label>
+    <input type="text" id="courseName" name="courseName" [(ngModel)]="courseName" required>
+  </div>
+  <div>
+    <label for="courseDescription">Course Description:</label>
+    <textarea id="courseDescription" name="courseDescription" [(ngModel)]="courseDescription" required></textarea>
+  </div>
+  <button type="submit">Enviar</button>
+</form>
+</div>

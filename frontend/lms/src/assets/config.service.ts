@@ -1,3 +1,5 @@
-export const APIurlBase = '/api/v1/';
-export const APIurlCourse = `${APIurlBase}course`;
-export const APIurlStudent = `${APIurlBase}student`;
+export const APIurlBase = 'http://localhost:8080/api/';
+export const APIurlCourses = `${APIurlBase}courses`;
+export const APIurlStudents = `${APIurlBase}students`;
+export const APIurlLogin = `${APIurlBase}login`;
+export const APIurlCheckEmail = `${APIurlStudents}/checkemail`;

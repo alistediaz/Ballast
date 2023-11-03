@@ -1,74 +1,16 @@
-<p *ngIf="true">
-  <button type="button" (click)="register.emit()">Register</button>
-</p>
-
-<h2>Register for {{course!.name}}</h2>
-<p>{{course!.description}}</p>
+<h2>{{course!.name}} registration</h2>
 <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" #formDir="ngForm">
   <div [hidden]="formDir.submitted">
     <div class="cross-validation"
       [class.cross-validation-error]="signUpForm.errors?.['identityRevealed'] && (signUpForm.touched || signUpForm.dirty)">
-      <div class="form-group">
-        <label for="firstName">
-          First Name
-        </label>
-        <input id="firstName" type="text" formControlName="firstName" required>
-        <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert">
-
-          <div *ngIf="firstName.errors?.['required']">
-            First Name is required.
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="lastName">
-          First Name
-        </label>
-        <input id="lastName" type="text" formControlName="lastName" required>
-        <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert">
-
-          <div *ngIf="lastName.errors?.['required']">
-            Last Name is required.
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="dob">
-          Date of Birth
-        </label>
-        <input id="dob" type="date" formControlName="dob" [max]="maxDate" required>
-        <div *ngIf="dob.invalid && (dob.dirty || dob.touched)" class="alert">
-
-          <div *ngIf="dob.errors?.['required']">
-            Date of Birth is required.
-          </div>
-
-          <div *ngIf="dob.errors?.['invalidDate']">
-            Must be 16+ years old.
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="address">
-          Address
-        </label>
-        <input id="address" type="text" formControlName="address" required>
-        <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert">
-
-          <div *ngIf="address.errors?.['required']">
-            Address is required.
-          </div>
-        </div>
-      </div>
 
       <div class="form-group">
         <label for="email">
           Email
         </label>
-        <input id="email" type="email" formControlName="email" required>
+        <input id="email" type="email" formControlName="email" [(ngModel)]="student.email" required>
+        <button type="button" (click)="callCheckEmailExists()">Register</button>
+
         <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert">
 
           <div *ngIf="email.errors?.['required']">
@@ -79,22 +21,80 @@
           </div>
         </div>
       </div>
+      <div *ngIf="displayForm">
+        <div class="form-group">
+          <label for="firstName">
+            First Name
+          </label>
+          <input id="firstName" type="text" formControlName="firstName" required>
+          <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert">
 
-      <div class="form-group">
-        <label for="phone">
-          Phone Number
-        </label>
-        <input id="phone" type="text" formControlName="phone" required>
-        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert">
-
-          <div *ngIf="phone.errors?.['required']">
-            Phone Number is required.
+            <div *ngIf="firstName.errors?.['required']">
+              First Name is required.
+            </div>
           </div>
         </div>
-      </div>
 
+        <div class="form-group">
+          <label for="lastName">
+            First Name
+          </label>
+          <input id="lastName" type="text" formControlName="lastName" required>
+          <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert">
+
+            <div *ngIf="lastName.errors?.['required']">
+              Last Name is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="dob">
+            Date of Birth
+          </label>
+          <input id="dob" type="date" formControlName="dob" [max]="maxDate" required>
+          <div *ngIf="dob.invalid && (dob.dirty || dob.touched)" class="alert">
+
+            <div *ngIf="dob.errors?.['required']">
+              Date of Birth is required.
+            </div>
+
+            <div *ngIf="dob.errors?.['invalidDate']">
+              Must be 16+ years old.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="address">
+            Address
+          </label>
+          <input id="address" type="text" formControlName="address" required>
+          <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert">
+
+            <div *ngIf="address.errors?.['required']">
+              Address is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">
+            Phone Number
+          </label>
+          <input id="phone" type="text" formControlName="phone" required>
+          <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert">
+
+            <div *ngIf="phone.errors?.['required']">
+              Phone Number is required.
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-default" type="submit" [disabled]="!signUpForm.valid">Register for the
+          {{course!.name}}</button>
+        <button type="button" class="btn btn-default" (click)="formDir.resetForm({})">Reset</button>
+      </div>
     </div>
-    <button class="btn btn-default" type="submit" [disabled]="!signUpForm.valid">Register to</button>
-    <button type="button" class="btn btn-default" (click)="formDir.resetForm({})">Reset</button>
   </div>
 </form>

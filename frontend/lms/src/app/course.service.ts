@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Course } from './courses';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, retry, throwError } from 'rxjs';
-import { APIurlCourse } from 'src/assets/config.service';
+import { APIurlCourses } from 'src/assets/config.service';
 
 
 @Injectable({
@@ -23,11 +23,11 @@ export class CourseService {
   httpOptions.headers.set('Authorization', 'my-new-auth-token'); */
 
   getCourses() {
-    return this.http.get<Course[]>('/assets/courses.json');
+    return this.http.get<Course[]>(APIurlCourses);
   }
 
   addCourse(course: Course): Observable<Course> {
-    return this.http.post<Course>(APIurlCourse, course, {})
+    return this.http.post<Course>(APIurlCourses, course, {})
       .pipe(
         retry(3),
         catchError(this.handleError)
@@ -35,7 +35,7 @@ export class CourseService {
   }
 
   deleteCourse(id: number): Observable<unknown> {
-    const url = `${APIurlCourse}/${id}`;
+    const url = `${APIurlCourses}/${id}`;
     return this.http.delete(url, {})
       .pipe(
         catchError(this.handleError)
@@ -43,7 +43,7 @@ export class CourseService {
   }
 
   updateCourse(course: Course): Observable<Course> {
-    return this.http.put<Course>(APIurlCourse, course, {})
+    return this.http.put<Course>(APIurlCourses, course, {})
       .pipe(
         catchError(this.handleError)
       );
